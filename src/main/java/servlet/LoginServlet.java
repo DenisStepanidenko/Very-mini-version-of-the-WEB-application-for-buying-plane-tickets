@@ -2,7 +2,6 @@ package servlet;
 
 import dto.UserDto;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,20 +12,38 @@ import util.JspHelper;
 
 import java.io.IOException;
 
+
+/**
+ * Сервлет для login странички
+ */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+    /**
+     * Зависимость для работы с UserService
+     */
     private final UserService userService = UserService.getInstance();
 
+    /**
+     * Данный метод ловит get запрос на страничку логина, и перенаправляет на jsp страничку
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher(JspHelper.getPath("login")).forward(req, resp);
     }
 
+
+    /**
+     * Данный метод проверят введённые пользователем данные и ищем в БД совпадение
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // получаем параметры для аутентификации пользователя
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
+
+        // собственно сама проверка и решение куда перенаправлять пользователя
         userService.login(email, password)
                 .ifPresentOrElse(
                         user -> onLoginSucess(user, req, resp),
@@ -34,14 +51,22 @@ public class LoginServlet extends HttpServlet {
                 );
     }
 
+
+    /**
+     * В случае ошибки при аутентификации перенаправляем пользователя опять на страничку логина
+     */
     @SneakyThrows
     private void onLoginFail(HttpServletRequest req, HttpServletResponse resp) {
         resp.sendRedirect("/CoursedmdevServlet_war/login?error&email=" + req.getParameter("email"));
     }
 
+    /**
+     * В случае успеха перенаправляем пользователя в личный кабинет
+     */
     @SneakyThrows
     private void onLoginSucess(UserDto user, HttpServletRequest req, HttpServletResponse resp) {
+        // также позаботимся о сохранении в сессию пользователя, чтобы потом отобразить информацию только для него
         req.getSession().setAttribute("user", user);
-        resp.sendRedirect("/CoursedmdevServlet_war/flights");
+        resp.sendRedirect("/CoursedmdevServlet_war/personalProfile");
     }
 }

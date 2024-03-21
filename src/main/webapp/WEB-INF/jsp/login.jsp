@@ -46,16 +46,18 @@
                         </div>
                     </c:if>
                 </div>
+
                 <div class="registrationHref">
                     <a href="${pageContext.request.contextPath}/registration" class="registrationHref">
                         Зарегистрироваться
                     </a>
                 </div>
+
+
             </form>
         </div>
     </div>
 </div>
-
 
 
 </body>

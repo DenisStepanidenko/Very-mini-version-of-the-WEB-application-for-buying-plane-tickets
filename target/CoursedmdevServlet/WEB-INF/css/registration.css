@@ -200,7 +200,7 @@ button:focus {
 }
 
 .window {
-    margin-bottom: 300px;
+    margin-bottom: 400px;
     margin-top: 275px;
     z-index: 100;
     color: #fff;
@@ -227,7 +227,7 @@ button:focus {
     background: linear-gradient(#1c000a69, #b3144d);
     opacity: 0.85;
     filter: alpha(opacity=85);
-    height: 700px;
+    height: 800px;
     position: absolute;
     width: 360px;
     z-index: 1;
@@ -261,4 +261,17 @@ button:focus {
 
 .buttonReg {
     margin-top: 25px;
+}
+
+.neon1 {
+    color: #fff;
+    text-shadow: 0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #0ff,
+    0 0 80px #0ff,
+    0 0 90px #0ff,
+    0 0 100px #0ff,
+    0 0 150px #0ff;
+
 }

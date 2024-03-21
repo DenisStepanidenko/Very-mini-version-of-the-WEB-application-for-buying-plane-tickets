@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Registration</title>
     <style>
         <%@ include file="/WEB-INF/css/registration.css"%>
     </style>
@@ -44,7 +44,7 @@
                         <input type='password' class='input-line full-width' name="password" id="password" required>
                     </label>
 
-                    <label for="image"> Выберите аватарку </label>
+                    <label for="image"> Выберите аватарку(jpg/png) </label>
                     <input type="file" name="image" id="image" class='input-line full-width' required>
 
                     <c:forEach var="gender" items="${requestScope.gender}">
@@ -60,51 +60,18 @@
                 </div>
 
                 <c:if test="${not empty requestScope.errors}">
-                    <div style="color: red">
+                    <div style="color: #ffe8f1">
                         <c:forEach var="error" items="${requestScope.errors}">
                             <span>${error.message}</span>
+                            <br/>
                         </c:forEach>
                     </div>
                 </c:if>
+
             </form>
         </div>
     </div>
 </div>
-
-
-<%--<form action="${pageContext.request.contextPath}/registration" method="post" enctype="multipart/form-data">--%>
-<%--    <label for="name"> Name </label>--%>
-<%--    <input type="text" name="name" id="name">--%>
-<%--    <br/>--%>
-<%--    <label for="date"> Date </label>--%>
-<%--    <input type="date" name="birthday" id="date">--%>
-<%--    <br/>--%>
-<%--    <label for="email"> Email </label>--%>
-<%--    <input type="text" name="email" id="email">--%>
-<%--    <br/>--%>
-<%--    <label for="password"> Password </label>--%>
-<%--    <input type="password" name="password" id="password">--%>
-<%--    <br/>--%>
-<%--    <label for="image"> Image </label>--%>
-<%--    <input type="file" name="image" id="image">--%>
-<%--    <br/>--%>
-<%--    <select name = "role" id="role">--%>
-<%--        <c:forEach var="role"  items="${requestScope.role}">--%>
-<%--            <option value="${role}">${role}</option>--%>
-<%--        </c:forEach>--%>
-<%--    </select>--%>
-<%--    <br/>--%>
-
-<%--    <button type="submit">Send</button>--%>
-
-    <c:if test="${not empty requestScope.errors}">
-        <div style="color: red">
-            <c:forEach var="error" items="${requestScope.errors}">
-                <span>${error.message}</span>
-            </c:forEach>
-        </div>
-    </c:if>
-<%--</form>--%>
 
 
 </body>

@@ -6,6 +6,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+
+/**
+ * Класс для проверки валидации даты
+ */
 @UtilityClass
 public class LocalDateFormatter {
     private static final String PATTERN = "yyyy-MM-dd";

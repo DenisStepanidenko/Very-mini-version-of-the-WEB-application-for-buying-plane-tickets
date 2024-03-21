@@ -12,27 +12,38 @@ import service.ImageService;
 import java.io.IOException;
 import java.io.InputStream;
 
+
+/**
+ * Сервлет, который по адресу изображения на компьютере возвращает его
+ */
 @WebServlet("/images/*")
 public class ImageServlet extends HttpServlet {
+    /**
+     * Зависимость для ImageService
+     */
     private final ImageService imageService = ImageService.getInstance();
 
+
+    /**
+     * Принимает путь до фотографии конкретного пользователя и возвращает картинку по этому адресу
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String requestURI = req.getRequestURI();
-        String imagePath = requestURI.replace("/CoursedmdevServlet_war/images", "");
-//        System.out.println(imagePath);
-        imageService.get(imagePath).ifPresentOrElse(image -> {
+        imageService.get(req.getParameter("pathToPhoto")).ifPresentOrElse(image -> {
             resp.setContentType("application/octet-stream");
             writeImage(image, resp);
         }, () -> resp.setStatus(404));
 
     }
 
+    /**
+     * Метод, который записывает в выходной поток байт фотографии
+     */
     @SneakyThrows
     private void writeImage(InputStream image, HttpServletResponse resp) {
-        try(image; ServletOutputStream outputStream = resp.getOutputStream()){
+        try (image; ServletOutputStream outputStream = resp.getOutputStream()) {
             int currentByte;
-            while((currentByte = image.read()) != -1){
+            while ((currentByte = image.read()) != -1) {
                 outputStream.write(currentByte);
             }
         }

@@ -5,13 +5,28 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Класс, где хранится список ошибок, который возникает при валидации
+ */
 @Getter
 public class ValidationResult {
+    /**
+     * Список ошибок
+     */
     private final List<Error> errors = new ArrayList<>();
-    public void add(Error error){
+
+    /**
+     * Добавляем новую ошибку в список
+     */
+    public void add(Error error) {
         this.errors.add(error);
     }
-    public boolean isValid(){
+
+    /**
+     * Метод, который по факту валидирует, то есть проверяет - пуст ли список ошибок
+     */
+    public boolean isValid() {
         return errors.isEmpty();
     }
 }

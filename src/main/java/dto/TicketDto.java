@@ -1,52 +1,17 @@
 package dto;
 
-import java.util.Objects;
 
+import lombok.Builder;
+import lombok.Value;
+
+
+/**
+ * Класс для отображения билета пользователю
+ */
+@Value
+@Builder
 public class TicketDto {
-    private final Long id;
-    private final Long flightId;
-    private final String seatNo;
+    Long flightId;
+    String seatNo;
 
-    public TicketDto(Long id, Long flightId, String seatNo) {
-        this.id = id;
-        this.flightId = flightId;
-        this.seatNo = seatNo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-
-    public Long getFlightId() {
-        return flightId;
-    }
-
-
-    public String getSeatNo() {
-        return seatNo;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TicketDto ticketDto = (TicketDto) o;
-        return Objects.equals(id, ticketDto.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "TicketDto{" +
-                "id=" + id +
-                ", flightId=" + flightId +
-                ", seatNo='" + seatNo + '\'' +
-                '}';
-    }
 }

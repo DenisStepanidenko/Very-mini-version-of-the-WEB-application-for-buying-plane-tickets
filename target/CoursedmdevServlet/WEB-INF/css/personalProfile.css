@@ -1,0 +1,222 @@
+@import "https://unpkg.com/open-props";
+
+body {
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    font-family: 'Vibur', cursive;
+    /*   the main font */
+    font-family: 'Abel', sans-serif;
+    opacity: .95;
+    /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+}
+
+.imageLogo {
+    width: 100px;
+    margin-left: 1800px
+}
+
+.purples {
+    margin-top: -90px;
+    margin-left: 450px;
+    font-size: 4em;
+    text-shadow: 0 1px #8da1ff, -1px 0 #c0cbff, -1px 2px #8da1ff, -2px 1px #c0cbff, -2px 3px #8da1ff, -3px 2px #c0cbff, -3px 4px #8da1ff, -4px 3px #c0cbff, -4px 5px #8da1ff, -5px 4px #c0cbff, -5px 6px #8da1ff, -6px 5px #c0cbff, -6px 7px #8da1ff, -7px 6px #c0cbff, -7px 8px #8da1ff, -8px 7px #c0cbff;
+
+}
+
+.profilePhoto {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    margin-top: 150px;
+    margin-left: 20px;
+}
+
+.profileInfoName {
+
+    margin-top: -300px;
+    margin-left: -680px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /*transform: translate(-50%, -50%);*/
+    font-size: 40px;
+    /* letter-spacing: 0.1em; */
+    /* -webkit-text-fill-color: transparent; */
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.profileInfoEmail {
+    margin-top: -250px;
+    margin-left: -680px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /*transform: translate(-50%, -50%);*/
+    font-size: 40px;
+    /* letter-spacing: 0.1em; */
+    /* -webkit-text-fill-color: transparent; */
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.profileInfoAge {
+    margin-top: -200px;
+    margin-left: -680px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /*transform: translate(-50%, -50%);*/
+    font-size: 40px;
+    /* letter-spacing: 0.1em; */
+    /* -webkit-text-fill-color: transparent; */
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.t1 {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 300px;
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-style: italic;
+    text-decoration: underline;
+    text-shadow: 2px 2px 4px #ff0101;
+}
+
+.t2 {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 390px;
+
+}
+
+.t3 {
+    font-size: 20px;
+    font-family: 'Comic Sans MS', cursive; /* Используем шрифт, который ассоциируется с мультяшным стилем */
+    color: #FF00FF; /* Выбираем яркий цвет для текста */
+    text-transform: uppercase; /* Преобразуем текст в верхний регистр */
+    letter-spacing: 3px; /* Увеличиваем расстояние между буквами */
+    text-shadow: 2px 2px 0 #000; /* Добавляем тень */
+    -webkit-text-stroke: 2px black; /* Добавляем контур */
+}
+
+.t4 {
+    margin-top: 650px;
+    margin-left: 50px;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-6);
+    font-size: var(--font-size-5);
+    color: var(--gray-8);
+    background: var(--gray-0);
+    border: 0;
+    padding: var(--size-4) var(--size-8);
+    transform: translateY(calc(var(--y, 0) * 1%)) scale(var(--scale));
+    transition: transform 0.1s;
+    position: absolute;
+}
+
+.t4:hover {
+    --y: -10;
+    --scale: 1.1;
+    --border-scale: 1;
+}
+
+.t4:active {
+    --y: 5%;
+    --scale: 0.9;
+    --border-scale: 0.9, 0.8;
+}
+
+.t4:before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--size-3) * -1);
+    border: var(--size-2) solid var(--gray-0);
+    transform: scale(var(--border-scale, 0));
+    transition: transform 0.125s;
+
+    --angle-one: 105deg;
+    --angle-two: 290deg;
+    --spread-one: 30deg;
+    --spread-two: 40deg;
+    --start-one: calc(var(--angle-one) - (var(--spread-one) * 0.5));
+    --start-two: calc(var(--angle-two) - (var(--spread-two) * 0.5));
+    --end-one: calc(var(--angle-one) + (var(--spread-one) * 0.5));
+    --end-two: calc(var(--angle-two) + (var(--spread-two) * 0.5));
+
+    mask: conic-gradient(
+            transparent 0 var(--start-one),
+            white var(--start-one) var(--end-one),
+            transparent var(--end-one) var(--start-two),
+            white var(--start-two) var(--end-two),
+            transparent var(--end-two)
+    );
+
+    z-index: -1;
+}
+
+
+.t5 {
+    font-style: italic;
+    text-decoration: none;
+    margin-top: 300px;
+    margin-left: 50px;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-6);
+    font-size: var(--font-size-5);
+    color: var(--gray-8);
+    background: var(--gray-0);
+    border: 0;
+    padding: var(--size-4) var(--size-8);
+    transform: translateY(calc(var(--y, 0) * 1%)) scale(var(--scale));
+    transition: transform 0.1s;
+    position: absolute;
+}
+
+.t5:hover {
+    --y: -10;
+    --scale: 1.1;
+    --border-scale: 1;
+}
+
+.t5:active {
+    --y: 5%;
+    --scale: 0.9;
+    --border-scale: 0.9, 0.8;
+}
+
+.t5:before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--size-3) * -1);
+    border: var(--size-2) solid var(--gray-0);
+    transform: scale(var(--border-scale, 0));
+    transition: transform 0.125s;
+
+    --angle-one: 105deg;
+    --angle-two: 290deg;
+    --spread-one: 30deg;
+    --spread-two: 40deg;
+    --start-one: calc(var(--angle-one) - (var(--spread-one) * 0.5));
+    --start-two: calc(var(--angle-two) - (var(--spread-two) * 0.5));
+    --end-one: calc(var(--angle-one) + (var(--spread-one) * 0.5));
+    --end-two: calc(var(--angle-two) + (var(--spread-two) * 0.5));
+
+    mask: conic-gradient(
+            transparent 0 var(--start-one),
+            white var(--start-one) var(--end-one),
+            transparent var(--end-one) var(--start-two),
+            white var(--start-two) var(--end-two),
+            transparent var(--end-two)
+    );
+
+    z-index: -1;
+}

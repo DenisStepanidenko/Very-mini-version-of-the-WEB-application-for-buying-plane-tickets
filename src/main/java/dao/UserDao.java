@@ -12,10 +12,11 @@ import java.util.Optional;
 
 public class UserDao implements Dao<Integer, User> {
     private static final UserDao INSTANCE = new UserDao();
-    public static final String SAV_SQL = "INSERT INTO users(name, birthday, email, password, role, gender ,image) values (?,?,?,?,?,?,?)";
+    private static final String SAV_SQL = "INSERT INTO users(name, birthday, email, password, role, gender ,image) values (?,?,?,?,?,?,?)";
 
-    public static final String GET_BY_EMAIL_AND_PASSWORD_SQL = "SELECT * FROM users WHERE email = ? and password = ?";
-
+    private static final String GET_BY_EMAIL_AND_PASSWORD_SQL = "SELECT * FROM users WHERE email = ? and password = ?";
+    private static final String GET_BY_EMAIL = "SELECT * FROM users WHERE email = ?";
+    private static final String GET_BY_NAME = "SELECT * FROM users WHERE name = ?";
 
     public static UserDao getInstance() {
         return INSTANCE;
@@ -26,6 +27,10 @@ public class UserDao implements Dao<Integer, User> {
         return null;
     }
 
+
+    /**
+     * Данный метод возвращает Optional<User> по email и password
+     */
     @SneakyThrows
     public Optional<User> findByEmailAndPassword(String email, String password) {
         try (Connection connection = ConnectionManager.get();
@@ -49,6 +54,7 @@ public class UserDao implements Dao<Integer, User> {
                 .id(resultSet.getObject("id", Integer.class))
                 .name(resultSet.getObject("name", String.class))
                 .birthday(resultSet.getObject("birthday", Date.class).toLocalDate())
+                .email(resultSet.getObject("email", String.class))
                 .image(resultSet.getObject("image", String.class))
                 .password(resultSet.getObject("password", String.class))
                 .role(Role.valueOf(resultSet.getObject("role", String.class)))
@@ -91,5 +97,41 @@ public class UserDao implements Dao<Integer, User> {
             entity.setId(generatedKeys.getObject("id", Integer.class));
         }
         return null;
+    }
+
+
+    /**
+     * Данный метод ищет объекта по email
+     */
+    @SneakyThrows
+    public Optional<User> findByEmail(String email) {
+        try (Connection connection = ConnectionManager.get();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_EMAIL)) {
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = null;
+            if (resultSet.next()) {
+                user = getBuild(resultSet);
+            }
+
+            return Optional.ofNullable(user);
+        }
+    }
+
+    @SneakyThrows
+    public Optional<User> findByName(String name) {
+        try (Connection connection = ConnectionManager.get();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_NAME)) {
+            preparedStatement.setString(1, name);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = null;
+            if (resultSet.next()) {
+                user = getBuild(resultSet);
+            }
+
+            return Optional.ofNullable(user);
+        }
     }
 }

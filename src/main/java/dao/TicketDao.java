@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Ticket;
+import lombok.SneakyThrows;
 import util.ConnectionManager;
 
 import java.math.BigDecimal;
@@ -13,17 +14,25 @@ import java.util.List;
 import java.util.Optional;
 
 public class TicketDao implements Dao<Long, Ticket> {
-    public static final String FIND_ALL_BY_FLIGHT_ID = """
+    private static final String FIND_ALL_BY_FLIGHT_ID = """
             SELECT *
             FROM ticket
             WHERE flight_id = ?
             """;
-    public static final TicketDao INSTANCE = new TicketDao();
+
+    /**
+     * SQL запрос для поиска билетов конкретного пользователя
+     */
+    private static final String FIND_ALL_BY_NAME_OF_PERSON = "SELECT * FROM ticket WHERE passenger_name = ?";
+    private static final TicketDao INSTANCE = new TicketDao();
+    private static final String SAVE_TICKET = "INSERT INTO ticket(passenger_name, flight_id, seat_no) values (?,?,?)";
 
     private TicketDao() {
     }
 
-
+    /**
+     * Данный метод ищет все билеты по id полёта
+     */
     public List<Ticket> findAllByFlightId(Long flightId) {
         try (Connection connection = ConnectionManager.get()) {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_BY_FLIGHT_ID);
@@ -41,15 +50,17 @@ public class TicketDao implements Dao<Long, Ticket> {
         }
     }
 
+
+    /**
+     * Метод, который из текущего resultSet создаёт объект Ticker
+     */
     private Ticket buildTicket(ResultSet resultSet) throws SQLException {
-        return new Ticket(
-                resultSet.getObject("id", Long.class),
-                resultSet.getObject("passenger_no" , String.class),
-                resultSet.getObject("passenger_name" , String.class),
-                resultSet.getObject("flight_id" , Long.class),
-                resultSet.getObject("seat_no" , String.class),
-                resultSet.getObject("cost" , BigDecimal.class)
-        );
+        return Ticket.builder()
+                .id(resultSet.getObject("id", Long.class))
+                .passengerName(resultSet.getObject("passenger_name", String.class))
+                .flightId(resultSet.getObject("flight_id", Long.class))
+                .seatNo(resultSet.getObject("seat_no", String.class))
+                .build();
     }
 
     public static TicketDao getInstance() {
@@ -79,5 +90,41 @@ public class TicketDao implements Dao<Long, Ticket> {
     @Override
     public Ticket save(Ticket entity) {
         return null;
+    }
+
+
+    /**
+     * Данный метод ищет все билеты пользователя с именем name (пока что в БД имя уникальное)
+     */
+    @SneakyThrows
+    public List<Ticket> findAllByNameOfPerson(String name) {
+        try (Connection connection = ConnectionManager.get();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_BY_NAME_OF_PERSON)) {
+            preparedStatement.setString(1, name);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Ticket> tickets = new ArrayList<>();
+            while (resultSet.next()) {
+                tickets.add(buildTicket(resultSet));
+            }
+
+            return tickets;
+        }
+    }
+
+    /**
+     * Метод, который сохраняет билет
+     */
+    @SneakyThrows
+    public void saveTicket(Long id, String seatNo, String name) {
+        try (Connection connection = ConnectionManager.get();
+             PreparedStatement preparedStatement = connection.prepareStatement(SAVE_TICKET)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setLong(2, id);
+            preparedStatement.setString(3, seatNo);
+
+            preparedStatement.executeUpdate();
+
+        }
     }
 }

@@ -1,6 +1,4 @@
-<%@ page import="service.TicketService" %>
-<%@ page import="dto.TicketDto" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Дэнич
   Date: 13.03.2024
@@ -13,17 +11,25 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Перелёты</title>
+    <style>
+        <%@ include file="/WEB-INF/css/flights.css" %>
+    </style>
 </head>
 <body>
-<%@ include file="header.jsp" %>
-<h1>Список перелётов</h1>
-<ul>
-    <c:forEach var="flight" items="${requestScope.flights}">
-        <li>
-            <a href="${pageContext.request.contextPath}/tickets?flightId=${flight.id}">${flight.description}</a>
-        </li>
-    </c:forEach>
-</ul>
+<img src="logotip/ROSSEJL_LOGO_ITOG.png" alt="" class="imageLogo">
+<h1 class="t7">Список перелётов</h1>
+<span class = "t11">Чтобы посмотреть информацию о рейсе и взять билет, нажмите на интересующий вас полёт</span>
+<div class = "t8">
+    <ul>
+        <c:forEach var="flight" items="${requestScope.flights}">
+            <li>
+                <a href="${pageContext.request.contextPath}/tickets?flightId=${flight.id}" class="t9">${flight.description}</a>
+            </li>
+        </c:forEach>
+    </ul>
+</div>
+
+<a href="${pageContext.request.contextPath}/personalProfile" class="t10"> Вернуться в личный кабинет </a>
 </body>
 </html>
