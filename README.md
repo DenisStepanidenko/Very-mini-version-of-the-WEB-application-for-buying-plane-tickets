@@ -218,6 +218,34 @@
 *Возвращает значение из Properties по ключу key*
 ## 5) public class UrlPath
 *Данный утилитный класс хранит в себе поля в виде строк, которые доступны пользователю, который не прошёл аутентификацию(публичные страницы)*
+***
+## VALIDATOR
+## 1) public interface Validator<T>
+*Базовый интерфейс для валидаторов, тип T - тип, который мы валидурем*
+### Методы
+1) ***ValidationResult isValid(T object)***  
+*Данный метод валидирует объект T*
+## 2) public class ValidationResult
+*Класс, где хранится список ошибок, которые возникают при валидации*
+### Методы 
+1) ***public void add(Error error)***  
+*Метод, который добавляет новую ошибку в список*
+2) ***public boolean isValid()***    
+*Метод, который по факту валидирует, то есть проверяет - пуст ли список ошибок*
+## 3) public enum PossibleFormatForImage
+*В данном Enum хранятся возможные расширения для аватарок*
+## 4) public class Error 
+*Класс с ошибкой, где хранится описание ошибки и код ошибки*
+## 5) public class CreateUserValidator implements Validator<CreateUserDto>
+*Класс для валидации CreateUserDto*
+### Методы
+1) ***public ValidationResult isValid(CreateUserDto object)***  
+*Данный метод валидирует данные с формы для регистрации и возвращает объект ValidationResult, где есть List с ошибками*
+2) ***private boolean isFileNameOfPhotoValid(String fileName)***   
+*Данный метод смотрит на расширение файла и сверяет, чтобы оно было валидным для нас*
+3) ***private boolean isInEnum(String value)***   
+*Данный метод проверяет - доступный ли формат для загрузки аватарки*
+
 
 
 
