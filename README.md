@@ -183,7 +183,41 @@
 *Данный метод возвращает страничку для регистрации*
 2) ***protected void doPost(HttpServletRequest req, HttpServletResponse resp)***   
 *Получаем запрос с данными от пользователя и сохраняем их в БД, если они валидны*
-
+## 8) public class TicketServlet extends HttpServlet
+*Данный сервлет занимается обработкой билетов на рейсы*  
+### Методы
+1) ***protected void doGet(HttpServletRequest req, HttpServletResponse resp)***   
+*Данный метод возвращает страничку, где есть описание рейса и всевозможные билеты на него*  
+***
+## UTIL
+## 1) public class ConnectionManager
+*Данный утилитный класс нужен для выдачи соединения с БД*
+### Методы
+1) ***private static void loadDriver()***   
+*Метод, который загружает драйвер для работы с БД*
+2) ***public static Connection get()***   
+*Метод, который выдаёт соединение с БД*
+## 2) public class JspHelper 
+*Данный утилитный класс возвращает полное путь до jsp файла*
+### Методы
+1) ***public static String getPath(String jspName)***  
+*Данный метод возвращает полный путь до файла с именем jspName*
+## 3) public class LocalDateFormatter
+*Класс для форматирования даты из строки в объект LocalDate*
+### Методы
+1) ***public LocalDate format(String date)***  
+*Метод, который по строке выдаёт объект LocalDate*
+2) ***public boolean isValid(String date)***  
+*Метод, который проверяет правильную валидацию даты*
+## 4) public class PropertiesUtil
+*Данный утилитный класс возвращает значения из файла application.properties для входа в БД*
+### Методы
+1) ***private static void loadProperties()***   
+*Данный метод загружает в объект типа Properties файл application.properties*
+2) ***public static String get(String key)***   
+*Возвращает значение из Properties по ключу key*
+## 5) public class UrlPath
+*Данный утилитный класс хранит в себе поля в виде строк, которые доступны пользователю, который не прошёл аутентификацию(публичные страницы)*
 
 
 
