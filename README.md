@@ -75,7 +75,19 @@
 ## ENTITY
 ## 1) public class Flight
 *Класс, который соответствует сущности FLight в БД*
-## 2) 
+## 2) public enum Gender
+*Enum, в котором содержатся значения для гендера пользователя*
+## 3) public enum Role
+*Enum, в котором содержатся значения для ролей пользователей*
+## 4) public class Ticket
+*Класс, который соответствует сущности Ticket в БД*
+## 5) public class User
+*Класс, который соответствует сущности User в БД*
+***
+## EXCEPTION
+## 1) public class ValidationException extends RuntimeException
+*Данный класс обрабатывает исключения, которые возникают при валидации пароля и логина пользователя*
+ 
 
 
 
