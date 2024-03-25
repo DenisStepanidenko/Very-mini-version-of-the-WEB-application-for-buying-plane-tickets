@@ -171,6 +171,18 @@
 ### Методы  
 1) ***protected void doPost(HttpServletRequest req, HttpServletResponse resp)***  
 *Данный метод удаляет пользователя из Session и делает редирект на страничку логина*
+## 6) public class PersonalProfileServlet extends HttpServlet
+*Сервлет, который обрабатывает личную страничку пользователя*  
+### Методы
+1) ***protected void doGet(HttpServletRequest req, HttpServletResponse resp)***   
+*Данный метод возвращает страничку пользователя с его данными, взятыми из Session*
+## 7) public class RegistrationServlet extends HttpServlet
+*Сервлет, который обрабатывает регистрацию пользователей*
+### Методы
+1) ***protected void doGet(HttpServletRequest req, HttpServletResponse resp)***     
+*Данный метод возвращает страничку для регистрации*
+2) ***protected void doPost(HttpServletRequest req, HttpServletResponse resp)***   
+*Получаем запрос с данными от пользователя и сохраняем их в БД, если они валидны*
 
 
 
