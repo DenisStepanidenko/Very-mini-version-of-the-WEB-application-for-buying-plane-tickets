@@ -7,6 +7,9 @@ import lombok.Value;
 
 import java.time.LocalDate;
 
+/**
+ * Класс, который используется для показа информации о пользователе
+ */
 @Value
 @Builder
 public class UserDto {

@@ -49,7 +49,11 @@ public class UserDao implements Dao<Integer, User> {
 
     }
 
-    private static User getBuild(ResultSet resultSet) throws SQLException {
+    /**
+     * Данный метод конструирует из текущего объекта ResultSet объект типа User
+     */
+    @SneakyThrows
+    private static User getBuild(ResultSet resultSet) {
         return User.builder()
                 .id(resultSet.getObject("id", Integer.class))
                 .name(resultSet.getObject("name", String.class))
@@ -67,16 +71,10 @@ public class UserDao implements Dao<Integer, User> {
         return Optional.empty();
     }
 
-    @Override
-    public boolean delete(Integer id) {
-        return false;
-    }
 
-    @Override
-    public void update(User entity) {
-
-    }
-
+    /**
+     * Данный метод сохраняет пользователю в БД
+     */
     @Override
     @SneakyThrows
     public User save(User entity) {
@@ -101,7 +99,7 @@ public class UserDao implements Dao<Integer, User> {
 
 
     /**
-     * Данный метод ищет объекта по email
+     * Данный метод ищет объект User по email
      */
     @SneakyThrows
     public Optional<User> findByEmail(String email) {
@@ -119,6 +117,10 @@ public class UserDao implements Dao<Integer, User> {
         }
     }
 
+
+    /**
+     * Данный метод ищет объекта User по имени
+     */
     @SneakyThrows
     public Optional<User> findByName(String name) {
         try (Connection connection = ConnectionManager.get();

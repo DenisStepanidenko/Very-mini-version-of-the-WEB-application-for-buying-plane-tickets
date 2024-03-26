@@ -11,7 +11,7 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Слой сервисов, который занимается бизнес логикой, связанной с полётами
+ * Сервис, который занимается бизнес логикой, связанной с БД с полётами
  */
 public class FlightService {
     /**
@@ -21,11 +21,11 @@ public class FlightService {
     /**
      * Зависимость для работы с FlightDao
      */
-    private final FlightDao flightDao = FlightDao.INSTANCE;
+    private final FlightDao flightDao = FlightDao.getInstance();
 
 
     /**
-     * Метод, который возвращает все описания полётов
+     * Метод, который возвращает все описания полётов в краткой форме
      */
     public List<FlightDto> findAll() {
         return flightDao.findAll().stream()
@@ -35,6 +35,10 @@ public class FlightService {
                 .collect(toList());
     }
 
+
+    /**
+     * Метод, который возвращает полное описание полёта. (дата отправления, город отправления, дата прибытия, город прибытия, модель самолёта)
+     */
     public FlightDtoForFullDescription findFlightById(Long id) {
         // получили объект полёт
         Flight flight = flightDao.findById(id).get();

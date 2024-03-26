@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
 
@@ -13,8 +14,13 @@ import java.io.IOException;
  */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
+
+    /**
+     * Данный метод удаляет пользователя из Session и делает редирект на страничку логина
+     */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         // тут происходит собственно сама инвалидация user
         req.getSession().invalidate();
 

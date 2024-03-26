@@ -14,7 +14,7 @@ import java.io.InputStream;
 
 
 /**
- * Сервлет, который по адресу изображения на компьютере возвращает его
+ * Сервлет, который по адресу изображения на компьютере возвращает его на страничку в виде потока байт
  */
 @WebServlet("/images/*")
 public class ImageServlet extends HttpServlet {
@@ -25,10 +25,10 @@ public class ImageServlet extends HttpServlet {
 
 
     /**
-     * Принимает путь до фотографии конкретного пользователя и возвращает картинку по этому адресу
+     * Принимает путь до фотографии конкретного пользователя и возвращает картинку, которая хранится по адресу, а адрес хранится в поле пользователя
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         imageService.get(req.getParameter("pathToPhoto")).ifPresentOrElse(image -> {
             resp.setContentType("application/octet-stream");
             writeImage(image, resp);

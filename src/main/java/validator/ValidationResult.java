@@ -7,7 +7,7 @@ import java.util.List;
 
 
 /**
- * Класс, где хранится список ошибок, который возникает при валидации
+ * Класс, где хранится список ошибок, которые возникают при валидации
  */
 @Getter
 public class ValidationResult {
@@ -17,7 +17,7 @@ public class ValidationResult {
     private final List<Error> errors = new ArrayList<>();
 
     /**
-     * Добавляем новую ошибку в список
+     * Метод, который добавляет новую ошибку в список
      */
     public void add(Error error) {
         this.errors.add(error);

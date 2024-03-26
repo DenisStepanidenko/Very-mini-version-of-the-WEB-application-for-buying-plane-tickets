@@ -14,7 +14,7 @@ import validator.ValidationResult;
 import java.util.Optional;
 
 /**
- * Слой сервисов для бизнес логики для работы с User
+ * Сервис, который занимается бизнес логикой, связанной с БД с пользователями
  */
 public class UserService {
     /**
@@ -49,7 +49,7 @@ public class UserService {
 
 
     /**
-     Данный метод пытается найти пользователя по email и password, и вернуть Optional<UserDto> - для загрузки потом в сессию
+     * Данный метод пытается найти пользователя по email и password, и вернуть Optional<UserDto> - для загрузки потом в сессию
      */
     public Optional<UserDto> login(String email, String password) {
         return userDao.findByEmailAndPassword(email, password)
@@ -58,7 +58,7 @@ public class UserService {
 
 
     /**
-     * Данный метод сохраняет в dao пользователя, если все данные валидны, если нет - выбрасывает исключение, которое сверху обрабатывается!
+     * Данный метод сохраняет в dao пользователя, если все данные валидны, если нет - выбрасывает исключение, которое сверху обрабатывается
      */
     @SneakyThrows
     public Integer create(CreateUserDto userDto) {

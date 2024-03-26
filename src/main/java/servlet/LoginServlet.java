@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 /**
- * Сервлет для login странички
+ * Данный сервлет занимается обработкой login странички
  */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -27,16 +27,18 @@ public class LoginServlet extends HttpServlet {
      * Данный метод ловит get запрос на страничку логина, и перенаправляет на jsp страничку
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         req.getRequestDispatcher(JspHelper.getPath("login")).forward(req, resp);
     }
 
 
     /**
-     * Данный метод проверят введённые пользователем данные и ищем в БД совпадение
+     * Данный метод проверят введённые пользователем данные для входа, и если всё успешно - загружает данного пользователя в Session, если нет - возвращает страничку с логином
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
         // получаем параметры для аутентификации пользователя
         String email = req.getParameter("email");

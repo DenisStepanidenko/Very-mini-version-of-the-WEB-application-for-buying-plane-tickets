@@ -6,6 +6,10 @@ import lombok.Value;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+
+/**
+ * Класс, который соответствует сущности FLight в БД
+ */
 @Value
 @Builder
 public class Flight {

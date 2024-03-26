@@ -2,16 +2,15 @@ package servlet;
 
 import dto.FlightDtoForFullDescription;
 import dto.UserDto;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import service.FlightService;
 import service.TicketService;
 import util.JspHelper;
 
-import java.io.IOException;
 
 /**
  * Данный сервлет будет заниматься обработкой покупки билетов
@@ -29,10 +28,11 @@ public class BuyingTicketsServlet extends HttpServlet {
     private final TicketService ticketService = TicketService.getInstance();
 
     /**
-     * Будем показывать страничку пользователю, где ещё раз напишем информацию про рейс и добавим кнопочку купить билет
+     * Данный метод возвращает страничку пользователю, где будет храниться полная информация о рейсе и возможность его купить
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         Long flightId = Long.valueOf(req.getParameter("flightId"));
 
         // для начала нужно создать полное описание рейса
@@ -46,10 +46,11 @@ public class BuyingTicketsServlet extends HttpServlet {
 
 
     /**
-     * Данный метод будет записывать билет пользователю
+     * Данный метод будет записывать билет пользователя в БД и возвращаться на страничку с личным кабинетом
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         Long id = Long.valueOf(req.getParameter("flightId"));
         String seatNo = req.getParameter("seatNo");
         UserDto userDto = (UserDto) req.getSession().getAttribute("user");

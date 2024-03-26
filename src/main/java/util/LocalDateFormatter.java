@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Класс для проверки валидации даты
+ * Класс для форматирования даты из строки в объект LocalDate
  */
 @UtilityClass
 public class LocalDateFormatter {
@@ -16,15 +16,21 @@ public class LocalDateFormatter {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN);
 
-    public LocalDate format(String date){
-        return LocalDate.parse(date , FORMATTER);
+    /**
+     * Метод, который по строке выдаёт объект LocalDate
+     */
+    public LocalDate format(String date) {
+        return LocalDate.parse(date, FORMATTER);
     }
 
-    public boolean isValid(String date){
-        try{
+    /**
+     * Метод, который проверяет правильную валидацию даты
+     */
+    public boolean isValid(String date) {
+        try {
             format(date);
             return true;
-        } catch (DateTimeParseException exception){
+        } catch (DateTimeParseException exception) {
             return false;
         }
     }

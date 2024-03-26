@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * Данный класс для преобразования из User в UserDto
+ * Данный класс для преобразования из User в UserDto для показа информации о пользователе на страничке
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)  // создание приватного конструктора
 public class UserMapper implements Mapper<User, UserDto> {

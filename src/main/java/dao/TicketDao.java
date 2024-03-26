@@ -52,7 +52,7 @@ public class TicketDao implements Dao<Long, Ticket> {
 
 
     /**
-     * Метод, который из текущего resultSet создаёт объект Ticker
+     * Метод, который из текущего resultSet создаёт объект класса Ticket
      */
     private Ticket buildTicket(ResultSet resultSet) throws SQLException {
         return Ticket.builder()
@@ -77,15 +77,7 @@ public class TicketDao implements Dao<Long, Ticket> {
         return Optional.empty();
     }
 
-    @Override
-    public boolean delete(Long id) {
-        return false;
-    }
 
-    @Override
-    public void update(Ticket entity) {
-
-    }
 
     @Override
     public Ticket save(Ticket entity) {

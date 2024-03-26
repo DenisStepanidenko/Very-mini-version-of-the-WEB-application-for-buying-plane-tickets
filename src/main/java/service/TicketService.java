@@ -12,7 +12,9 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
-
+/**
+ * Сервис, который занимается бизнес логикой, связанной с БД с билетами
+ */
 public class TicketService {
 
     /**
@@ -62,7 +64,7 @@ public class TicketService {
 
 
     /**
-     * Данный метод должен выдать все билеты пользователя с именем name (пока что в БД имя уникальное)
+     * Данный метод должен выдать все билеты пользователя с именем name
      */
     public List<TicketDtoForPerson> findAllByName(String name) {
         // для начала получаем ticket
@@ -84,7 +86,7 @@ public class TicketService {
 
 
     /**
-     * Возвращает свободные места, зная какие места уже заняты
+     * Возвращает свободные места на рейс с переданным id
      */
     public List<TicketDto> getFreeSeatNo(List<TicketDto> boughtTickets, Long flightId) {
         List<TicketDto> ticketDtoList = new ArrayList<>();
@@ -102,7 +104,7 @@ public class TicketService {
     }
 
     /**
-     * Метод, который проверяет есть ли seatNo среди boughtTickets
+     * Метод, который проверяет есть ли данное место seatNo среди купленных мест
      */
     private boolean isCheck(String seatNo, List<TicketDto> boughtTickets) {
         for (TicketDto ticketDto : boughtTickets) {
@@ -115,9 +117,10 @@ public class TicketService {
 
 
     /**
-     * Метод, который сохраняет билет
+     * Метод, который сохраняет билет в БД
      */
     public void saveTicket(Long id, String seatNo, String name) {
+
         ticketDao.saveTicket(id, seatNo, name);
     }
 }

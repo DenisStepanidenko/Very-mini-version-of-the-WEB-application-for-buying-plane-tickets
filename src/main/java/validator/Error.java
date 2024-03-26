@@ -3,7 +3,7 @@ package validator;
 import lombok.Value;
 
 /**
- * Класс с ошибкой, где описывает код и сообщение ошибки
+ * Класс с ошибкой, где хранится описание ошибки и код ошибки
  */
 @Value(staticConstructor = "of")
 public class Error {

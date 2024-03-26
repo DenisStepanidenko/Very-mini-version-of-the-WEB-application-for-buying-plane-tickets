@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import service.UserService;
 import util.JspHelper;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 
 /**
- * Сервлет для регистрации пользователей
+ * Сервлет, который обрабатывает регистрацию пользователей
  */
 @WebServlet("/registration")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024)
@@ -28,10 +29,11 @@ public class RegistrationServlet extends HttpServlet {
 
 
     /**
-     * Получаем GET запрос на регистрацию
+     * Данный метод возвращает страничку для регистрации
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
         // сохраняем в атрибуты список с возможными гендерами
         req.setAttribute("gender", List.of("MALE", "FEMALE"));
 
@@ -40,10 +42,11 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     /**
-     * Получаем POST запрос с данными от пользователя
+     * Получаем POST запрос с данными от пользователя и сохраняем их в БД, если они валидны
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         // Создаём объект CreateUserDto
         CreateUserDto userDto = CreateUserDto.builder()
                 .name(req.getParameter("name"))
@@ -57,7 +60,6 @@ public class RegistrationServlet extends HttpServlet {
 
 
         try {
-
             // для начала с помощью userService создадим данного user (там идёт валидация и работа с dao)
             userService.create(userDto);
 

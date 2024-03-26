@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Flight;
-import entity.FlightStatus;
 import lombok.SneakyThrows;
 import util.ConnectionManager;
 
@@ -13,9 +12,7 @@ import java.util.Optional;
 
 public class FlightDao implements Dao<Long, Flight> {
 
-    public static final FlightDao INSTANCE = new FlightDao();
-
-
+    private static final FlightDao INSTANCE = new FlightDao();
 
     private FlightDao() {
     }
@@ -95,15 +92,6 @@ public class FlightDao implements Dao<Long, Flight> {
 
     }
 
-    @Override
-    public boolean delete(Long id) {
-        return false;
-    }
-
-    @Override
-    public void update(Flight entity) {
-
-    }
 
 
     @Override

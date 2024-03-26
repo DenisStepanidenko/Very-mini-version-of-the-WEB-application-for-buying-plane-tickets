@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import service.FlightService;
 import service.TicketService;
 import util.JspHelper;
@@ -18,7 +19,7 @@ import java.util.Set;
 
 
 /**
- * Сервлет, который будет отображать билеты, которые остались на выбранный рейс
+ * Данный сервлет занимается обработкой билетов на рейсы
  */
 @WebServlet("/tickets")
 public class TicketServlet extends HttpServlet {
@@ -33,10 +34,11 @@ public class TicketServlet extends HttpServlet {
 
 
     /**
-     * Данный метод GET выдаёт страничку, где есть информация и всех билетах и описание рейса
+     * Данный метод возвращает страничку, где есть описание рейса и всевозможные билеты на него
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         // сначала достанем из параметров id полёта
         Long flightId = Long.valueOf(req.getParameter("flightId"));
 

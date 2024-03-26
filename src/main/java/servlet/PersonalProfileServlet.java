@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import service.TicketService;
 import util.JspHelper;
 import util.PropertiesUtil;
@@ -19,15 +20,19 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- * Сервлет для личной странички каждого пользователя
+ * Сервлет, который обрабатывает личную страничку пользователя
  */
 @WebServlet("/personalProfile")
 public class PersonalProfileServlet extends HttpServlet {
     private final String basePath = PropertiesUtil.get("image.base.url");
     private final TicketService ticketService = TicketService.getInstance();
 
+    /**
+     * Данный метод возвращает страничку пользователя с его данными, взятыми из Session
+     */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @SneakyThrows
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 
         // для начала нужно сохранить путь до фотографии данного пользователя, чтобы потом с помощью imageServlet подгрузить его на страницу
         UserDto userDto = (UserDto) req.getSession().getAttribute("user");

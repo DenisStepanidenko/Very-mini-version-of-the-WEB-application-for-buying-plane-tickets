@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import service.FlightService;
 import util.JspHelper;
 
@@ -15,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 
 
 /**
- * Данный сервлет принимает запросы на показ всех рейсов
+ * Данный сервлет будет заниматься обработкой показа всех рейсов пользователю
  */
 @WebServlet("/flights")
 public class FlightServlet extends HttpServlet {
@@ -23,11 +24,11 @@ public class FlightServlet extends HttpServlet {
 
 
     /**
-     Принимаем GET запрос на показ всех рейсов
+     * Данный метод возвращает страничку пользователю, на которой перечислены все полёты в виде краткого описания
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
+    @SneakyThrows
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         // для начала добавим все авиарейсы в атрибут
         req.setAttribute("flights", flightService.findAll());
         req.getRequestDispatcher(JspHelper.getPath("flights"))

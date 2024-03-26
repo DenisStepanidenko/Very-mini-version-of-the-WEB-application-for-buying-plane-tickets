@@ -1,7 +1,5 @@
 package service;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import util.PropertiesUtil;
 
@@ -12,7 +10,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 
 /**
- * Слой сервис для работы с image
+ * Сервис, который занимается обработкой фотографией
  */
 public class ImageService {
     /**
