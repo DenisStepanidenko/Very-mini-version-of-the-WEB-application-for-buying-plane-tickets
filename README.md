@@ -245,7 +245,84 @@
 *Данный метод смотрит на расширение файла и сверяет, чтобы оно было валидным для нас*
 3) ***private boolean isInEnum(String value)***   
 *Данный метод проверяет - доступный ли формат для загрузки аватарки*
+***
+## Базы данных
+В проекте использованы 5 различных таблиц
+## Flight
+```sql
+-- flight (рейс)
+--        id (номер рейса не уникальный, поэтому нужен id)
+--  flight_no (номер рейса)
+--  departure_date (дата вылета)
+--  departure_airport_code (аэропорт вылета)
+--  arrival_date (дата прибытия)
+--  arrival_airport_code (аэропорт прибытия)
+--  aircraft_id (самолет)
+CREATE TABLE flight
+(
+    id                     BIGSERIAL PRIMARY KEY,
+    flight_no              VARCHAR(16)                       NOT NULL,
+    departure_date         TIMESTAMP                         NOT NULL,
+    departure_airport_code CHAR(3) REFERENCES airport (code) NOT NULL,
+    arrival_date           TIMESTAMP                         NOT NULL,
+    arrival_airport_code   CHAR(3) REFERENCES airport (code) NOT NULL,
+    aircraft_id            INT REFERENCES aircraft (id)      NOT NULL,
+);
+```
+## Ticket
+```sql
+-- ticket (билет на самолет)
+--        id
+--  	passenger_name (имя и фамилия пассажира)
+--  	flight_id (рейс)
+--  	seat_no (номер места в самолете – flight_id + seat-no - unique)
+CREATE TABLE ticket
+(
+    id             BIGSERIAL PRIMARY KEY,
+    passenger_name VARCHAR(128)                  NOT NULL,
+    flight_id      BIGINT REFERENCES flight (id) NOT NULL,
+    seat_no        VARCHAR(4)                    NOT NULL,
+);
+```
+## Airport
+```sql
+-- airport (аэропорт)
+--         code (уникальный код аэропорта)
+--              country (страна)
+--                      city (город)
+CREATE TABLE airport
+(
+    code    CHAR(3) PRIMARY KEY,
+    country VARCHAR(256) NOT NULL,
+    city    VARCHAR(128) NOT NULL
+);
+```
+## Aircraft
+```sql
+-- aircraft (самолет)
+--          id
+--  	model (модель самолета - unique)
+CREATE TABLE aircraft
+(
+    id    SERIAL PRIMARY KEY,
+    model VARCHAR(128) NOT NULL
+);
+```
 
+## Users
+```sql
+create table users
+(
+    id       serial primary key,
+    name     varchar(124)  not null,
+    birthday date          not null,
+    email    varchar(124)  not null unique,
+    image    varchar(1024) not null,
+    password varchar(32)   not null,
+    role     varchar(32)   not null,
+    gender   varchar(16)   not null
+);
+```
 
 
 
