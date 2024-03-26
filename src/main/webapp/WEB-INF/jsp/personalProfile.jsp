@@ -28,7 +28,7 @@
     <h1 class="t1">Ваши билеты</h1>
     <div class="t2">
         <c:forEach var="ticket" items="${requestScope.allTickets}">
-            <span class="t3">Место : ${ticket.getSeatNo()}, Рейс : ${ticket.getDescription()}</span>
+            <a class="t3" href="${pageContext.request.contextPath}/deleteTicket?flightId=${ticket.getFlightId()}&seatNo=${ticket.getSeatNo()}">Место : ${ticket.getSeatNo()}, Рейс : ${ticket.getDescription()}</a>
             <br/>
         </c:forEach>
     </div>
@@ -46,6 +46,7 @@
 <form action="${pageContext.request.contextPath}/logout" method="post">
     <button type="submit" class="t4">Выйти из аккаунта</button>
 </form>
+
 
 
 <a href="${pageContext.request.contextPath}/flights" class="t5"> Купить билеты </a>

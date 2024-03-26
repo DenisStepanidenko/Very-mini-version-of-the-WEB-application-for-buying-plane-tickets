@@ -11,6 +11,10 @@ import lombok.Value;
 @Builder
 public class TicketDtoForPerson {
     /**
+     * id рейса
+     */
+    Long flightId;
+    /**
      * Номер места
      */
     String seatNo;

@@ -39,5 +39,11 @@
       method="post">
     <button type="submit" class="t10">Купить билет</button>
 </form>
+
+<a href="${pageContext.request.contextPath}/flights" class="t3"> Все рейсы </a>
+
+<a href="${pageContext.request.contextPath}/personalProfile" class="t11"> Вернуться в личный кабинет </a>
+
+
 </body>
 </html>

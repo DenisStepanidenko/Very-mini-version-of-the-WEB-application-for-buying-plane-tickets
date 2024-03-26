@@ -76,6 +76,7 @@ public class TicketService {
         // пройдёмся по каждому ticket и запросим у flightId описание
         for (Ticket ticket : allTicketsForPerson) {
             ticketDtoForPersonList.add(TicketDtoForPerson.builder()
+                    .flightId(ticket.getFlightId())
                     .seatNo(ticket.getSeatNo())
                     .description(flightDao.getDescriptionByFlightId(ticket.getFlightId())).build());
         }
@@ -122,5 +123,12 @@ public class TicketService {
     public void saveTicket(Long id, String seatNo, String name) {
 
         ticketDao.saveTicket(id, seatNo, name);
+    }
+
+    /**
+     * Данный метод удаляет билет из БД
+     */
+    public void deleteTicket(Long flightId, String seatNo, String nameOfPerson) {
+        ticketDao.deleteTicket(flightId, seatNo, nameOfPerson);
     }
 }

@@ -106,8 +106,14 @@ body {
     letter-spacing: 3px; /* Увеличиваем расстояние между буквами */
     text-shadow: 2px 2px 0 #000; /* Добавляем тень */
     -webkit-text-stroke: 2px black; /* Добавляем контур */
+    transition: transform 0.2s;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
 }
-
+.t3:hover {
+    transform: scale(1.2) ;
+}
 .t4 {
     margin-top: 650px;
     margin-left: 50px;

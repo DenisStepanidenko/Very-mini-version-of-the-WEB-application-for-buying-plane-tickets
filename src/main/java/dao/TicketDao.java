@@ -27,6 +27,8 @@ public class TicketDao implements Dao<Long, Ticket> {
     private static final TicketDao INSTANCE = new TicketDao();
     private static final String SAVE_TICKET = "INSERT INTO ticket(passenger_name, flight_id, seat_no) values (?,?,?)";
 
+    private static final String DELETE_TICKET = "DELETE FROM ticket where flight_id = ? and seat_no = ? and passenger_name = ?";
+
     private TicketDao() {
     }
 
@@ -78,7 +80,6 @@ public class TicketDao implements Dao<Long, Ticket> {
     }
 
 
-
     @Override
     public Ticket save(Ticket entity) {
         return null;
@@ -114,6 +115,23 @@ public class TicketDao implements Dao<Long, Ticket> {
             preparedStatement.setString(1, name);
             preparedStatement.setLong(2, id);
             preparedStatement.setString(3, seatNo);
+
+            preparedStatement.executeUpdate();
+
+        }
+    }
+
+
+    /**
+     * Данный метод удаляет билет пользователя
+     */
+    @SneakyThrows
+    public void deleteTicket(Long flightId, String seatNo, String nameOfPerson) {
+        try (Connection connection = ConnectionManager.get();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TICKET)) {
+            preparedStatement.setLong(1, flightId);
+            preparedStatement.setString(2, seatNo);
+            preparedStatement.setString(3, nameOfPerson);
 
             preparedStatement.executeUpdate();
 

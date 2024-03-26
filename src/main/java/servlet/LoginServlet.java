@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 
 
         // собственно сама проверка и решение куда перенаправлять пользователя
+        System.out.println(userService.login(email, password));
         userService.login(email, password)
                 .ifPresentOrElse(
                         user -> onLoginSucess(user, req, resp),
@@ -59,7 +60,7 @@ public class LoginServlet extends HttpServlet {
      */
     @SneakyThrows
     private void onLoginFail(HttpServletRequest req, HttpServletResponse resp) {
-        resp.sendRedirect("/CoursedmdevServlet_war/login?error&email=" + req.getParameter("email"));
+        resp.sendRedirect("/CoursedmdevServlet_war/login?error");
     }
 
     /**
