@@ -323,6 +323,35 @@ create table users
     gender   varchar(16)   not null
 );
 ```
+***
+<br/>  
+
+# Демонстрация работы WEB-приложения
+*Стартовая страничка начинается с аутентификации пользователя по почте и паролю.* <br/>  
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/89c554fe-6a9c-4065-b4a4-b6882d0576f3)
+<br/>  
+*Если пользователь не зарегистрирован, то можно нажать на ссылочку регистрации и перейти к ней.* <br/>  
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/97c436cf-2363-43d9-86bd-f6adad6db917)
+<br/>  
+
+*В личном кабинете можно посмотреть аватарку, основную информацию о человеке, а также список купленных билетов и кнопочки для перехода к билетам и выхода из аккаунта.* <br/>  
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/434d5174-9181-4733-8ef6-af1cbb96ef47)
+<br/>  
+
+*Список всех рейсов выглядит таким образом. Каждый рейс кликабельный, то есть по нажатию на него можно перейти к описанию данного рейса и покупки билетов.* <br/>  
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/8e274043-ce13-48e1-a019-485e8a8fac97)
+<br/>  
+
+*Описание каждого рейса состоит из даты отправления, города отправления, даты прибытия, города прибытия и модели самолёта. Также здесь собрана информация по занятым и свободным местам. Чтобы купить билет, нужно лишь нажать на свободное место.* <br/>  
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/2991a497-08b3-4262-bb62-d8ed9848dd04)
+<br/>    
+
+*Если нажать на свободное место, то пользователь попадает на страничку, где также имеется описание рейса, и кнопочка купить билет. По нажатию этой кнопочки - пользователь попадет в свой личный кабинет, где у него уже обновляется информация по купленным билетам.* <br/>  
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/33a80e95-0025-4810-ae21-a17c1e604f8f)
+
+
+
+
 
 
 
