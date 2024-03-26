@@ -40,6 +40,8 @@
 *Данный метод ищет все билеты пользователя с именем name (пока что в БД имя уникальное)*
 4) ***public void saveTicket(Long id, String seatNo, String name)***
 *Метод, который сохраняет билет, купленный пользователем*
+5) ***public void deleteTicket(Long flightId, String seatNo, String nameOfPerson)***  
+*Данный метод удаляет билет пользователя*
 ## 4) public class UserDao implements Dao<Integer, User>
 *Данный Dao класс содержит методы для работы с БД users. Также реализован паттерн singleton.* 
 ### Методы
@@ -127,6 +129,8 @@
 *Метод, который проверяет есть ли данное место seatNo среди купленных мест*   
 5) ***public void saveTicket(Long id, String seatNo, String name)***   
 *Метод, который сохраняет билет в БД*
+6) ***public void deleteTicket(Long flightId, String seatNo, String nameOfPerson)***  
+*Данный метод удаляет билет из БД*
 ## 4) public class UserService
 *Сервис, который занимается бизнес логикой, связанной с БД с пользователями*
 ### Методы
@@ -187,7 +191,14 @@
 *Данный сервлет занимается обработкой билетов на рейсы*  
 ### Методы
 1) ***protected void doGet(HttpServletRequest req, HttpServletResponse resp)***   
-*Данный метод возвращает страничку, где есть описание рейса и всевозможные билеты на него*  
+*Данный метод возвращает страничку, где есть описание рейса и всевозможные билеты на него*
+## 9) public class DeleteTicket extends HttpServlet
+*Данный сервлет предназначен для обработки удаления билетов*  
+### Методы
+1) ***protected void doGet(HttpServletRequest req, HttpServletResponse resp)***  
+*Данный метод будет возвращать страничку пользователю, где будет информация о билете, а также возможность его удалить*
+2) ***protected void doPost(HttpServletRequest req, HttpServletResponse resp)***   
+*Данный метод удаляет билет пользователя*
 ***
 ## UTIL
 ## 1) public class ConnectionManager
@@ -338,6 +349,10 @@ create table users
 ![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/434d5174-9181-4733-8ef6-af1cbb96ef47)
 <br/>  
 
+*Также если нажать на билет в личном кабинете, то появится страничка, где можно сдать этот билет.* <br/> 
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/b285f7ef-03cc-4cfe-b78d-64ba0d76e720)  
+<br/>
+
 *Список всех рейсов выглядит таким образом. Каждый рейс кликабельный, то есть по нажатию на него можно перейти к описанию данного рейса и покупки билетов.* <br/>  
 ![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/8e274043-ce13-48e1-a019-485e8a8fac97)
 <br/>  
@@ -347,7 +362,10 @@ create table users
 <br/>    
 
 *Если нажать на свободное место, то пользователь попадает на страничку, где также имеется описание рейса, и кнопочка купить билет. По нажатию этой кнопочки - пользователь попадет в свой личный кабинет, где у него уже обновляется информация по купленным билетам.* <br/>  
-![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/33a80e95-0025-4810-ae21-a17c1e604f8f)
+![image](https://github.com/DenisStepanidenko/Very-mini-version-of-the-WEB-application-for-buying-plane-tickets/assets/110686828/c70d8e52-d768-4469-81ab-82b15ec874a4)
+
+
+
 
 
 
